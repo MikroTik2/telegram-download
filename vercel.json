@@ -7,5 +7,5 @@
          "destination": "index.js"
        }
      ],
-     "redirects": [{ "source": "/", "destination": "/api", "permanent": false }]
+     "redirects": [{ "source": "/", "destination": "/", "permanent": false }]
    }
