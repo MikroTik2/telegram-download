@@ -6,7 +6,7 @@ const ytdlComposer = require("./composers/ytdl.command.js");
 
 const bot = new Telegraf(process.env.TOKEN_BOT);
 
-bot.launch();
+bot.launch({ webhook: { domain: 'https://telegram-download.vercel.app/', port: 4000 } })
 
 bot.use(session());
 
