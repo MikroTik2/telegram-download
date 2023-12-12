@@ -1,11 +1,11 @@
 {
      "version": 2,
-     "public": true,
-     "rewrites": [
+     "builds": [{ "src": "index.js", "use": "@now/node" }],
+     "routes": [
        {
-         "source": "/(.*)",
-         "destination": "index.js"
+         "src": "/(.*)",
+         "dest": "/"
        }
-     ],
-     "redirects": [{ "source": "/", "destination": "/", "permanent": false }]
+     ]
    }
+   
