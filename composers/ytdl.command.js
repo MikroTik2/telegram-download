@@ -51,6 +51,35 @@ textComposer.on("text", async (ctx) => {
             await ctx.replyWithVideo({ source: filePath });
             await ctx.reply(`Ваше видео: ${videoInfo.videoDetails.title}`);
             
+        } else if (link.includes("instagram")) {
+
+            const options = {
+                method: 'GET',
+                url: 'https://instagram-story-downloader-media-downloader.p.rapidapi.com/index',
+                params: {
+                    url: link
+                },
+                headers: {
+                    'X-RapidAPI-Key': '51bdcedcd4msh9242d4a9211e2b3p195cc3jsnac943c9c3eac',
+                    'X-RapidAPI-Host': 'instagram-story-downloader-media-downloader.p.rapidapi.com'
+                },
+            };
+
+            await ctx.reply(code(`Сообщение принял. Жду ответа от сервера...`));
+            const response = await axios.request(options);
+            
+            let username;
+            let description;
+            let video;
+
+            if (response.data) {
+                username = response.data.username || "Извините но имя пользывателя мы не нашли";
+                description = response.data.title || "Извините но описание мы не нашли";
+                video = response.data.story_by_id?.media || response.data.media;
+            };
+
+            await ctx.replyWithVideo({ url: video }, { caption: `Имя: ${username}\nОписание: ${description}` });
+
         } else {
 
             ctx.reply("Не удалось распознать тип видео");
