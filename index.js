@@ -10,7 +10,7 @@ const ytdlComposer = require("./composers/ytdl.command.js");
 
 const bot = new Telegraf(process.env.TOKEN_BOT);
 
-bot.launch();
+bot.launch({ webhook: { domain: "https://telegram-download-artur-dosent.vercel.app/", port: PORT } });
 
 bot.use(session());
 
